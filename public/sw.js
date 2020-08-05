@@ -6,6 +6,8 @@ this.addEventListener("install", (event) => {
                 '/static/js/main.chunk.js',
                 '/static/js/0.chunk.js',
                 '/static/js/bundle.js',
+                '/static/css/main.chunk.css',
+                '/bootstrap.min.css',
                 '/index.html',
                 '/',
                 "/users"
@@ -13,19 +15,17 @@ this.addEventListener("install", (event) => {
         })
     )
 })
-
 this.addEventListener("fetch",(event)=>{
-    if(!navigator.onLine)
-    {
-        event.respondWith(
-            caches.match(event.request).then((resp)=>{
-                if(resp)
-                {
-                    return resp
-                }
-                let requestUrl= event.request.clone();
-                fetch(requestUrl)
-            })
-        )
-    }
+
+if (!navigator.onLine) {
+    event.respondWith(
+        caches.match(event.request).then((resp) => {
+            if (resp) {
+                return resp
+            }
+            let requestUrl = event.request.clone();
+            fetch(requestUrl)
+        })
+    )
+}
 })
