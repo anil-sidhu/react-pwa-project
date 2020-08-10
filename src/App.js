@@ -8,15 +8,15 @@ import Users from './Users'
 import firebase from './firebase'
 import { Link, Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 function App() {
-  React.useEffect(() => {
-    const msg = firebase.messaging();
-    msg.requestPermission().then(() => {
-      return msg.getToken()
-      }).then(data => {
-        console.warn("resp...",data);
-
+  React.useEffect(()=>{
+    const msg=firebase.messaging();
+    msg.requestPermission().then(()=>{
+      return msg.getToken();
+    }).then((data)=>{
+      console.warn("token",data)
     })
   })
+
   return (
     <div className="App">
       <Router>
